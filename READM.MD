@@ -1,5 +1,24 @@
 # S.O.L.I.D. Principles
+---
+reference:
+* https://www.youtube.com/watch?v=pTB30aXS77U
+* https://towardsdatascience.com/solid-coding-in-python-1281392a6a94
+* https://www.pythontutorial.net/python-oop/python-dependency-inversion-principle/
 
+## Single Responsibility Principle
+Every component of our code (in general a class, but also a function) should have one and only one responsibility. As a consequence of that, there should be only a reason to change it.
+
+## Open–Closed Principle
+We should not need to modify the code that already written to accommodate new functionality, but simply add what we need now. Should use abstraction class for this.
+
+## Liskov Substitution Principle
+Functions that use pointers or references to base classes must be able to use objects of derived classes without knowing it. In other words, what we want is to have the objects of our subclasses behaving the same way as the objects of our superclass.
+
+## Interface Segregation Principle
+Many client-specific interfaces are better than one general-purpose interface.
+
+## Dependency Inversion Principle
+High-level modules should not depend on low-level modules. Both should depend on abstractions.
 
 # PEP 8 - Style Guide
 ---
