@@ -9,7 +9,7 @@ reference:
 Every component of our code (in general a class, but also a function) should have one and only one responsibility. As a consequence of that, there should be only a reason to change it.
 
 ## Open–Closed Principle
-We should not need to modify the code that already written to accommodate new functionality, but simply add what we need now. Should use abstraction class for this.
+We should not need to modify the code that already written to accommodate new functionality, but simply add what we need now. Should use abstract base class (ABC) for this.
 
 ## Liskov Substitution Principle
 Functions that use pointers or references to base classes must be able to use objects of derived classes without knowing it. In other words, what we want is to have the objects of our subclasses behaving the same way as the objects of our superclass.
