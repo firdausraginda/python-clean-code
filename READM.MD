@@ -28,15 +28,12 @@ def long_function_name(
     print(var_one)
 ```
 
-### No extra indentation
+### If-else statement with multiple conditions
 ```
 if (this_is_one_thing and
     that_is_another_thing):
     do_something()
-```
 
-### Add some extra indentation on the conditional continuation line
-```
 if (this_is_one_thing
         and that_is_another_thing):
     do_something()
@@ -106,6 +103,37 @@ y = 2
 long_variable = 3
 ```
 
+## When to Use Trailing Commas
+
+### Trailing commas
+```
+FILES_1 = ('setup.cfg',)
+FILES_2 = [
+    'setup.cfg',
+    'tox.ini',
+    ]
+initialize(FILES,
+           error=True,
+           )
+```
+
+## Comments
+
+### Inline comment
+```
+x = x + 1  # Increment x
+```
+
+### Documentation string
+```
+"""Return a foobang
+
+Optional plotz says to frobnicate the bizbaz first.
+"""
+```
+
+## Other Recommendations
+
 ### Math operator when define a variable
 ```
 i = i + 1
@@ -127,44 +155,19 @@ def complex(real, imag=0.0):
     return magic(r=real, i=imag)
 ```
 
-### When combining an argument annotation with a default value, however, do use spaces around the = sign:
+### When combining an argument annotation with a default value, however, do use spaces around the = sign
 ```
 def munge(sep: AnyStr = None): ...
 def munge(input: AnyStr, sep: AnyStr = None, limit=1000): ...
 ```
 
-### Compound statements (multiple statements on the same line) are generally discouraged:
+### Compound statements (multiple statements on the same line) are generally discouraged
 ```
 if foo == 'blah':
     do_blah_thing()
 do_one()
 do_two()
 do_three()
-```
-
-### Trailing commas
-```
-FILES_1 = ('setup.cfg',)
-FILES_2 = [
-    'setup.cfg',
-    'tox.ini',
-    ]
-initialize(FILES,
-           error=True,
-           )
-```
-
-### Inline comment
-```
-x = x + 1  # Increment x
-```
-
-### Documentation string
-```
-"""Return a foobang
-
-Optional plotz says to frobnicate the bizbaz first.
-"""
 ```
 
 ### Try and except
