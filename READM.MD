@@ -20,9 +20,76 @@ Many client-specific interfaces are better than one general-purpose interface.
 ## Dependency Inversion Principle
 High-level modules should not depend on low-level modules. Both should depend on abstractions.
 
+# Clean Code in Writting a Function
+---
+reference: 
+* https://www.youtube.com/watch?v=yatgY4NpZXE
+
+## Seperate Commands from Queries
+Directly return the result of a function if possible
+```
+def validate_card(customer: Customer) -> bool:
+    return (
+        luhn_checksum(customer.cc_number)
+        and datetime(customer.cc_exp_year, customer.cc_exp_month, 1) > datetime.now()
+    )
+```
+
+## Only Accept Parameters That Needed Inside The Function
+If a function only requires 3 values with string type, pass only those 3 values in string type.
+hint: specify `*` in function parameter to force specify the keyword argument when call a function.
+```
+def validate_card(*, number: str, exp_month: int, exp_year: int) -> bool:
+    return (
+        luhn_checksum(number)
+        and datetime(exp_year, exp_month, 1) > datetime.now()
+    )
+```
+
+## Keep The Number of Parameters Minimal
+If a function requires to many parameters, create 1 class that inherit **Protocol** as superclass.
+```
+from typing import Protocol
+
+class cardInfo(Protocol):
+    @property
+    def number(self) -> str:
+        ...
+    
+    @property
+    def exp_month(self) -> int:
+        ...
+
+    @property
+    def exp_year(self) -> int:
+        ...
+
+def validate_card(card: CardInfo) -> bool:
+    return (
+        luhn_checksum(card.number)
+        and datetime(card.exp_year, card.exp_month, 1) > datetime.now()
+    )
+
+def main() -> None:
+    card = Card(number="1249190007575069", exp_month=1, exp_year=2024) 
+    card.valid = validate_card(card)
+```
+
+
+## Don't Create and Use an Object in The Same Place
+Create object in a function, and use it in different function
+
+## Don't Use Flag Arguments
+Flag argument means there are only 2 possibilities: true or false. Better to split it to 2 different functions.
+
+## Function & Parameter Naming Tips
+Function name should be action, it should be a 'verb'. And argument should be 'nouns'.
+Example: greeting(name)
+
 # PEP 8 - Style Guide
 ---
-reference: https://peps.python.org/pep-0008/
+reference: 
+* https://peps.python.org/pep-0008/
 
 ## Indentation
 
