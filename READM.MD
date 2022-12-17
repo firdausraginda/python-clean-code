@@ -38,7 +38,7 @@ reference:
 
 ## Seperate Commands from Queries
 Directly return the result of a function if possible
-```
+```py
 def validate_card(customer: Customer) -> bool:
     return (
         luhn_checksum(customer.cc_number)
@@ -49,7 +49,7 @@ def validate_card(customer: Customer) -> bool:
 ## Only Accept Parameters That Needed Inside The Function
 If a function only requires 3 values with string type, pass only those 3 values in string type.
 hint: specify `*` in function parameter to force specify the keyword argument when call a function.
-```
+```py
 def validate_card(*, number: str, exp_month: int, exp_year: int) -> bool:
     return (
         luhn_checksum(number)
@@ -59,7 +59,7 @@ def validate_card(*, number: str, exp_month: int, exp_year: int) -> bool:
 
 ## Keep The Number of Parameters Minimal
 If a function requires to many parameters, create 1 class that inherit **Protocol** as superclass.
-```
+```py
 from typing import Protocol
 
 class cardInfo(Protocol):
@@ -86,7 +86,6 @@ def main() -> None:
     card.valid = validate_card(card)
 ```
 
-
 ## Don't Create and Use an Object in The Same Place
 Create object in a function, and use it in different function
 
@@ -108,8 +107,9 @@ Example: greeting(name)
 The solution is to group code inside all function with side effect to one place. And turn other function to pure functions.
 
 ### Example on Class
+
 #### before
-```
+```py
 from datetime import datetime
 from typing import List
 
@@ -144,7 +144,7 @@ if __name__ == "__main__":
 ```
 
 #### after
-```
+```py
 from datetime import datetime
 from typing import List
 
@@ -187,7 +187,7 @@ if __name__ == "__main__":
 ### Example on Function
 
 #### after
-```
+```py
 from datetime import datetime
 from typing import List
 
@@ -236,7 +236,7 @@ Dataclasses provide functionality to print, compare, & order data that easier to
 ## Regular Class vs Dataclasses
 
 #### regular classes
-```
+```py
 class Person:
     def __init__(self, name, job, age) -> None:
         self.name = name
@@ -249,7 +249,7 @@ person2 = Person("wanda", "UI engineer", 25)
 ```
 
 #### dataclasses
-```
+```py
 from dataclasses import dataclass, field
 
 
@@ -281,20 +281,20 @@ reference:
 ## Indentation
 
 ### Aligned with opening delimiter
-```
+```py
 foo = long_function_name(var_one, var_two,
                          var_three, var_four)
 ```
 
 ### Hanging indents should add a level
-```
+```py
 foo = long_function_name(
     var_one, var_two,
     var_three, var_four)
 ```
 
 ### Add 4 spaces (an extra level of indentation) to distinguish arguments from the rest
-```
+```py
 def long_function_name(
         var_one, var_two, var_three,
         var_four):
@@ -302,7 +302,7 @@ def long_function_name(
 ```
 
 ### If-else statement with multiple conditions
-```
+```py
 if (this_is_one_thing and
     that_is_another_thing):
     do_something()
@@ -313,7 +313,7 @@ if (this_is_one_thing
 ```
 
 ### The closing brace/bracket/parenthesis
-```
+```py
 my_list = [
     1, 2, 3,
     4, 5, 6,
@@ -326,7 +326,7 @@ result = some_function_that_takes_arguments(
 ```
 
 ### Math operator as function arguments
-```
+```py
 income = (gross_wages
           + taxable_interest
           + (dividends - qualified_dividends)
@@ -336,7 +336,7 @@ income = (gross_wages
 
 ## Imports
 
-```
+```py
 import os
 import sys
 from subprocess import Popen, PIPE
@@ -345,32 +345,32 @@ from subprocess import Popen, PIPE
 ## Whitespace in Expressions and Statements
 
 ### Immediately inside parentheses, brackets or braces
-```
+```py
 spam(ham[1], {eggs: 2})
 ```
 
 ### Between a trailing comma and a following close parenthesis
-```
+```py
 foo = (0,)
 ```
 
 ### Immediately before a comma, semicolon, or colon
-```
+```py
 if x == 4: print(x, y); x, y = y, x
 ```
 
 ### Immediately before the open parenthesis that starts the argument list of a function call
-```
+```py
 spam(1)
 ```
 
 ### Immediately before the open parenthesis that starts an indexing or slicing
-```
+```py
 dct['key'] = lst[index]
 ```
 
 ### More than one space around an assignment (or other) operator to align it with another
-```
+```py
 x = 1
 y = 2
 long_variable = 3
@@ -379,7 +379,7 @@ long_variable = 3
 ## When to Use Trailing Commas
 
 ### Trailing commas
-```
+```py
 FILES_1 = ('setup.cfg',)
 FILES_2 = [
     'setup.cfg',
@@ -393,12 +393,12 @@ initialize(FILES,
 ## Comments
 
 ### Inline comment
-```
+```py
 x = x + 1  # Increment x
 ```
 
 ### Documentation string
-```
+```py
 """Return a foobang
 
 Optional plotz says to frobnicate the bizbaz first.
@@ -408,7 +408,7 @@ Optional plotz says to frobnicate the bizbaz first.
 ## Other Recommendations
 
 ### Math operator when define a variable
-```
+```py
 i = i + 1
 submitted += 1
 x = x*2 - 1
@@ -417,25 +417,25 @@ c = (a+b) * (a-b)
 ```
 
 ### Function annotations should use the normal rules for colons and always have spaces around the -> arrow if present
-```
+```py
 def munge(input: AnyStr): ...
 def munge() -> PosInt: ...
 ```
 
 ### Don’t use spaces around the = sign when used to indicate a keyword argument, or when used to indicate a default value for an unannotated function parameter
-```
+```py
 def complex(real, imag=0.0):
     return magic(r=real, i=imag)
 ```
 
 ### When combining an argument annotation with a default value, however, do use spaces around the = sign
-```
+```py
 def munge(sep: AnyStr = None): ...
 def munge(input: AnyStr, sep: AnyStr = None, limit=1000): ...
 ```
 
 ### Compound statements (multiple statements on the same line) are generally discouraged
-```
+```py
 if foo == 'blah':
     do_blah_thing()
 do_one()
@@ -444,7 +444,7 @@ do_three()
 ```
 
 ### Try and except
-```
+```py
 try:
     value = collection[key]
 except KeyError:
@@ -454,7 +454,7 @@ else:
 ```
 
 ### Consistent on return null
-```
+```py
 def foo(x):
     if x >= 0:
         return math.sqrt(x)
@@ -468,6 +468,6 @@ def bar(x):
 ```
 
 ### Checking data type
-```
+```py
 if isinstance(obj, int):
 ```
