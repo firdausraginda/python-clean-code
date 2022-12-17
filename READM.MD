@@ -98,6 +98,54 @@ Example: greeting(name)
 
 ---
 
+# Dataclasses
+
+reference:
+* https://www.youtube.com/watch?v=vRVVyl9uaZc&list=PLeGc_lalTbVHuDY-nbYLCUkIByRaAyUzV&index=7
+
+## Data-Driven Classes
+Dataclasses provide functionality to print, compare, & order data that easier to use than regular function. Those are mostly used for analytical purposes.
+
+## Regular Class vs Dataclasses
+
+* regular classes
+```
+class Person:
+    def __init__(self, name, job, age) -> None:
+        self.name = name
+        self.job = job
+        self.age = age
+
+
+person1 = Person("geralt", "UX designer", 27)
+person2 = Person("wanda", "UI engineer", 25)
+```
+
+* dataclasses
+```
+from dataclasses import dataclass, field
+
+
+@dataclass(order=True)
+class Person:
+    sort_index: int = field(init=False, repr=False)
+    name: str
+    job: str
+    age: int = 100
+
+    def __post_init__(self):
+        self.sort_index = self.age
+
+
+person1 = Person("geralt", "UX designer", 27)
+person2 = Person("wanda", "UI engineer")
+```
+
+  * `init=False`: don't need to specify value of `sort_index` when create object
+  * `repr=False`: `sort_index` will not shown when print the object
+
+---
+
 # PEP 8 - Style Guide
 
 reference: 
