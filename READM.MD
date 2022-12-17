@@ -1,8 +1,8 @@
 # Table of Contents
 
-1. [S.O.L.I.D. Principles](#https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#solid-principles)
-2. [Clean Code in Writting a Function](#https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#clean-code-in-writting-a-function)
-3. [PEP 8 - Style Guide](#https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#pep-8---style-guide)
+1. [S.O.L.I.D. Principles](https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#solid-principles)
+2. [Clean Code in Writting a Function](https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#clean-code-in-writting-a-function)
+3. [PEP 8 - Style Guide](https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#pep-8---style-guide)
 
 ---
 
