@@ -1,10 +1,10 @@
 # Table of Contents
 
-1. [S.O.L.I.D. Principles](https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#solid-principles)
-2. [Abstract Base Class (ABC) vs Protocol](https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#abstract-base-class-(abc)-vs-protocol)
-3. [Clean Code in Writting a Function](https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#clean-code-in-writting-a-function)
-4. [Dataclasses](https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#dataclasses)
-5. [PEP 8 - Style Guide](https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#pep-8---style-guide)
+1. [S.O.L.I.D. Principles](https://github.com/firdausraginda/python-clean-code/blob/main/README.md#solid-principles)
+2. [Abstract Base Class (ABC) vs Protocol](https://github.com/firdausraginda/python-clean-code/blob/main/README.md#abstract-base-class-abc-vs-protocol)
+3. [Clean Code in Writting a Function](https://github.com/firdausraginda/python-clean-code/blob/main/README.md#clean-code-in-writting-a-function)
+4. [Dataclasses](https://github.com/firdausraginda/python-clean-code/blob/main/README.md#dataclasses)
+5. [PEP 8 - Style Guide](https://github.com/firdausraginda/python-clean-code/blob/main/README.md#pep-8---style-guide)
 
 ---
 
