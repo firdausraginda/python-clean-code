@@ -1,9 +1,10 @@
 # Table of Contents
 
 1. [S.O.L.I.D. Principles](https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#solid-principles)
-2. [Clean Code in Writting a Function](https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#clean-code-in-writting-a-function)
-3. [Dataclasses](https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#dataclasses)
-4. [PEP 8 - Style Guide](https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#pep-8---style-guide)
+2. [Abstract Base Class (ABC) vs Protocol](https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#abstract-base-class-(abc)-vs-protocol)
+3. [Clean Code in Writting a Function](https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#clean-code-in-writting-a-function)
+4. [Dataclasses](https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#dataclasses)
+5. [PEP 8 - Style Guide](https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#pep-8---style-guide)
 
 ---
 
@@ -28,6 +29,69 @@ Many client-specific interfaces are better than one general-purpose interface.
 
 ## Dependency Inversion Principle
 High-level modules should not depend on low-level modules. Both should depend on abstractions.
+
+---
+
+# Abstract Base Class (ABC) vs Protocol
+
+reference:
+* https://www.youtube.com/watch?v=xvb5hGLoK0A&list=PLeGc_lalTbVHuDY-nbYLCUkIByRaAyUzV&index=5&t=1156s
+
+Both ABC & protocol, act as abstraction class, that can have subclasses.
+
+The different is only on the subclass:
+* ABC: the subclass must have exact same methods, even if some methods are not used in the subclass.
+* protocol: the subclass doesn't have to have exact same methods. If the subclass doesn't need it, then don't need to specify it.
+
+### Example ABC
+```py
+from abc import ABC, abstractmethod
+
+
+class Device(ABC):
+    @abstractmethod
+    def connect(self) -> None:
+        pass
+
+    @abstractmethod
+    def disconnect(self) -> None:
+        pass
+
+
+class iphone(Device):
+    def connect(self) -> None:
+        return "iphone connecting..."
+
+    def disconnect(self) -> None:
+        return "iphone disconnecting..."
+
+
+iphone_1 = iphone()
+print(iphone_1.connect())
+print(iphone_1.disconnect())
+```
+
+### Example Protocol
+```py
+from typing import Protocol
+
+
+class Device(Protocol):
+    def connect(self) -> None:
+        ...
+
+    def disconnect(self) -> None:
+        ...
+
+
+class iphone(Device):
+    def connect(self) -> None:
+        return "iphone connecting..."
+
+
+iphone_1 = iphone()
+print(iphone_1.connect())
+```
 
 ---
 
@@ -232,6 +296,7 @@ Higher order functino: if a function receives a function as argument, or returns
 
 ### Solution
 The idea is to supply a function as parameter to a function. 
+
 The advantage of doing this is function as param is not always be called, after pass it to the designated function, we can set condition when it should be called.
 
 ### Example
