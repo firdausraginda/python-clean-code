@@ -235,6 +235,8 @@ The idea is to supply a function as parameter to a function.
 The advantage of doing this is function as param is not always be called, after pass it to the designated function, we can set condition when it should be called.
 
 ### Example
+
+#### use callable
 ```py
 from datetime import datetime
 from typing import List, Callable
@@ -271,6 +273,51 @@ def read_name() -> str:
 def main() -> None:
     print(greet(read_name(), read_greeting))
     print(greet_list(["John", "Jane", "Joe"], read_greeting))
+
+
+if __name__ == "__main__":
+    main()
+```
+
+#### use partial
+```py
+from datetime import datetime
+from typing import List, Callable
+from functools import partial
+
+GreetingReader = Callable[[], str]
+GreetingFunction = Callable[[str], str]
+
+
+def greet(name: str, greeting_reader: GreetingReader) -> str:
+    if name.lower() == "agi":
+        return "bugger off!"
+
+    return f"{greeting_reader()}, {name}."
+
+
+def greet_list(names: List[str], greeting_fn: GreetingFunction) -> List[str]:
+    return [greeting_fn(name) for name in names]
+
+
+def read_greeting() -> str:
+    current_time = datetime.now()
+    if current_time.hour < 12:
+        return "Good morning"
+    elif 12 <= current_time.hour < 18:
+        return "Good afternoon"
+    else:
+        return "Good evening"
+
+
+def read_name() -> str:
+    return input("Enter your name: ")
+
+
+def main() -> None:
+    greeting_fn = partial(greet, greeting_reader=read_greeting)
+    print(greeting_fn(read_name()))
+    print(greet_list(["John", "Jane", "Joe"], greeting_fn))
 
 
 if __name__ == "__main__":
