@@ -1,5 +1,13 @@
-# S.O.L.I.D. Principles
+# Table of Contents
+
+1. [S.O.L.I.D. Principles](#https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#solid-principles)
+2. [Clean Code in Writting a Function](#https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#clean-code-in-writting-a-function)
+3. [PEP 8 - Style Guide](#https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#pep-8---style-guide)
+
 ---
+
+# S.O.L.I.D. Principles
+
 reference:
 * https://www.youtube.com/watch?v=pTB30aXS77U
 * https://towardsdatascience.com/solid-coding-in-python-1281392a6a94
@@ -20,8 +28,10 @@ Many client-specific interfaces are better than one general-purpose interface.
 ## Dependency Inversion Principle
 High-level modules should not depend on low-level modules. Both should depend on abstractions.
 
-# Clean Code in Writting a Function
 ---
+
+# Clean Code in Writting a Function
+
 reference: 
 * https://www.youtube.com/watch?v=yatgY4NpZXE
 
@@ -86,8 +96,10 @@ Flag argument means there are only 2 possibilities: true or false. Better to spl
 Function name should be action, it should be a 'verb'. And argument should be 'nouns'.
 Example: greeting(name)
 
-# PEP 8 - Style Guide
 ---
+
+# PEP 8 - Style Guide
+
 reference: 
 * https://peps.python.org/pep-0008/
 
