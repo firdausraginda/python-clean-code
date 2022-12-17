@@ -223,6 +223,55 @@ if __name__ == "__main__":
     main()
 ```
 
+## Function as First-Class Citizens
+Higher order functino: if a function receives a function as argument, or returns a function as result
+
+### Solution
+The idea is to supply a function as parameter to a function.
+
+### Example
+```py
+from datetime import datetime
+from typing import List, Callable
+
+# callable that doesn't take any arguments but return string
+GreetingReader = Callable[[], str]
+
+
+def greet(name: str, greeting_reader: GreetingReader) -> str:
+    if name.lower() == "agi":
+        return "bugger off!"
+
+    return f"{greeting_reader()}, {name}."  # function greeting_reader() only called if name is not "agi"
+
+
+def greet_list(names: List[str], greeting_reader: GreetingReader) -> List[str]:
+    return [greet(name, greeting_reader) for name in names]
+
+
+def read_greeting() -> str:
+    current_time = datetime.now()
+    if current_time.hour < 12:
+        return "Good morning"
+    elif 12 <= current_time.hour < 18:
+        return "Good afternoon"
+    else:
+        return "Good evening"
+
+
+def read_name() -> str:
+    return input("Enter your name: ")
+
+
+def main() -> None:
+    print(greet(read_name(), read_greeting))
+    print(greet_list(["John", "Jane", "Joe"], read_greeting))
+
+
+if __name__ == "__main__":
+    main()
+```
+
 ---
 
 # Dataclasses
