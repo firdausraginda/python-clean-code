@@ -279,7 +279,9 @@ if __name__ == "__main__":
     main()
 ```
 
-#### use partial
+#### use callable & partial
+partial lib is to predefined value of function argument, so we don't need to specify that argument again whenever call the function.
+
 ```py
 from datetime import datetime
 from typing import List, Callable
