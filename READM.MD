@@ -2,7 +2,8 @@
 
 1. [S.O.L.I.D. Principles](https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#solid-principles)
 2. [Clean Code in Writting a Function](https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#clean-code-in-writting-a-function)
-3. [PEP 8 - Style Guide](https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#pep-8---style-guide)
+3. [Dataclasses](https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#dataclasses)
+4. [PEP 8 - Style Guide](https://github.com/firdausraginda/python-clean-code/blob/main/READM.MD#pep-8---style-guide)
 
 ---
 
@@ -108,7 +109,7 @@ Dataclasses provide functionality to print, compare, & order data that easier to
 
 ## Regular Class vs Dataclasses
 
-* regular classes
+#### regular classes
 ```
 class Person:
     def __init__(self, name, job, age) -> None:
@@ -121,7 +122,7 @@ person1 = Person("geralt", "UX designer", 27)
 person2 = Person("wanda", "UI engineer", 25)
 ```
 
-* dataclasses
+#### dataclasses
 ```
 from dataclasses import dataclass, field
 
