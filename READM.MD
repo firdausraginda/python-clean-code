@@ -116,6 +116,7 @@ from typing import List
 
 class Greeting:
     def __init__(self) -> None:
+        # ------ relies on something outside the function that create side effects ------
         current_time = datetime.now()
         if current_time.hour < 12:
             self.greeting_intro = "Good morning"
@@ -123,9 +124,12 @@ class Greeting:
             self.greeting_intro = "Good afternoon"
         else:
             self.greeting_intro = "Good evening"
+        # ------ relies on something outside the function that create side effects ------
 
     def greet(self, name: str) -> None:
+        # ------ create side effects ------
         print(f"{self.greeting_intro}, {name}.")
+        # ------ create side effects ------
 
     def greet_list(self, names: List[str]) -> None:
         for name in names:
@@ -227,7 +231,8 @@ if __name__ == "__main__":
 Higher order functino: if a function receives a function as argument, or returns a function as result
 
 ### Solution
-The idea is to supply a function as parameter to a function.
+The idea is to supply a function as parameter to a function. 
+The advantage of doing this is function as param is not always be called, after pass it to the designated function, we can set condition when it should be called.
 
 ### Example
 ```py
