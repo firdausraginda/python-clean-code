@@ -67,7 +67,7 @@ The different is only on the subclass:
 * ABC: the subclass must have exact same methods, even if some methods are not used in the subclass.
 * protocol: the subclass doesn't have to have exact same methods. If the subclass doesn't need it, then don't need to specify it.
 
-### Example ABC
+#### example using ABC
 ```py
 from abc import ABC, abstractmethod
 
@@ -95,7 +95,7 @@ print(iphone_1.connect())
 print(iphone_1.disconnect())
 ```
 
-### Example Protocol
+#### example using protocol
 ```py
 from typing import Protocol
 
@@ -135,8 +135,7 @@ def validate_card(customer: Customer) -> bool:
 ```
 
 ## Only Accept Parameters That Needed Inside The Function
-If a function only requires 3 values with string type, pass only those 3 values in string type.
-hint: specify `*` in function parameter to force specify the keyword argument when call a function.
+If a function only requires 3 values with string type, pass only those 3 values in string type. Specify `*` in function parameter to force keyword argument specified when call the function.
 ```py
 def validate_card(*, number: str, exp_month: int, exp_year: int) -> bool:
     return (
@@ -188,11 +187,10 @@ Example: greeting(name)
 
 ### Function with side effect vs pure function
 * function with side effects: when function/method relies on or modify something on the outside of that function. It makes code harder to maintain & to test bc we can't isolate the function properly.
-  * example: printing something, read from a file, write to a file, interact with database, interact with other services
+  * example of side effects: printing something, read from a file, write to a file, interact with database, interact with other services.
 * pure function: if function doesn't have side effect, and the returned value only determined by its input values. This easier to maintain & to test.
 
-### Solution
-The solution is to group code inside all function with side effect to one place. And turn other function to pure functions.
+The idea is to put code inside all function with side effect to one place. And turn other function to pure functions.
 
 ### Example on Class
 
@@ -316,16 +314,12 @@ if __name__ == "__main__":
 ```
 
 ## Function as First-Class Citizens
-Higher order functino: if a function receives a function as argument, or returns a function as result
 
-### Solution
 The idea is to supply a function as parameter to a function. 
 
-The advantage of doing this is function as param is not always be called, after pass it to the designated function, we can set condition when it should be called.
+The advantage of doing this is, after pass it to the designated function, we can set condition when it should be called. So it will not be called all the time.
 
-### Example
-
-#### use callable
+#### example use callable
 ```py
 from datetime import datetime
 from typing import List, Callable
@@ -368,7 +362,7 @@ if __name__ == "__main__":
     main()
 ```
 
-#### use callable & partial
+#### example use callable & partial
 partial lib is to predefined value of function argument, so we don't need to specify that argument again whenever call the function.
 
 ```py
@@ -422,8 +416,7 @@ if __name__ == "__main__":
 reference:
 * https://www.youtube.com/watch?v=vRVVyl9uaZc&list=PLeGc_lalTbVHuDY-nbYLCUkIByRaAyUzV&index=7
 
-## Data-Driven Classes
-Dataclasses provide functionality to print, compare, & order data that easier to use than regular function. Those are mostly used for analytical purposes.
+Dataclasses is a data-driven classes, meaning it provides functionality to print, compare, & order data that easier to use than regular function. Those are mostly used for analytical purposes.
 
 ## Regular Class vs Dataclasses
 
