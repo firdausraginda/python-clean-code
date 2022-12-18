@@ -4,7 +4,8 @@
 2. [Abstract Base Class (ABC) vs Protocol](https://github.com/firdausraginda/python-clean-code/blob/main/README.md#abstract-base-class-abc-vs-protocol)
 3. [Clean Code in Writting a Function](https://github.com/firdausraginda/python-clean-code/blob/main/README.md#clean-code-in-writting-a-function)
 4. [Dataclasses](https://github.com/firdausraginda/python-clean-code/blob/main/README.md#dataclasses)
-5. [PEP 8 - Style Guide](https://github.com/firdausraginda/python-clean-code/blob/main/README.md#pep-8---style-guide)
+5. [Try and Except](https://github.com/firdausraginda/python-clean-code/blob/main/README.md#try-and-except)
+6. [PEP 8 - Style Guide](https://github.com/firdausraginda/python-clean-code/blob/main/README.md#pep-8---style-guide)
 
 ---
 
@@ -438,6 +439,115 @@ person2 = Person("wanda", "UI engineer")
 
   * `init=False`: don't need to specify value of `sort_index` when create object
   * `repr=False`: `sort_index` will not shown when print the object
+
+---
+
+# Try and Except
+
+For flask API case, in endpoint level we want to have high level error, while in usecase / repo level we want to have low level error.
+
+It is better to catch specific error in `except` statement instead of general error.
+
+## Low-Level & High-Level Error Handling
+
+### repo / usecase level
+```py
+
+# ------ custom error handler ------
+class NotFoundError(Exception):
+    pass
+
+class NotAuthorizedError(Exception):
+    pass
+# ------ custom error handler ------
+
+def fetch_blog(id: str):
+    try:
+        # connect to the database
+        con = sqlite3.connect('application.db')
+        cur = con.cursor()
+
+        # execute the query and fetch the data
+        cur.execute(f"SELECT * FROM blogs where id=?", [id])
+        result = cur.fetchone()
+
+        # return the result or raise an error
+        if result is None:
+            raise NotFoundError(f'Unable to find blog with id {id}.')
+        
+        data = blog_lst_to_json(result)
+        if not data['public']:
+            raise NotAuthorizedError(f'You are not allowed to access blog with id {id}.')
+        return data
+    except sqlite3.OperationalError as e:
+        print(e)
+        raise NotFoundError(f'Unable to find blog with id {id}.')
+    finally:
+        print("Closing the database")
+        # close the database
+        con.close()
+```
+
+### endpoint level
+```py
+from flask import Flask, jsonify, abort
+from db import fetch_blogs, fetch_blog, NotFoundError, NotAuthorizedError
+
+app = Flask(__name__)
+
+@app.route('/blogs/<id>')
+def get_blog(id):
+    try:
+        return jsonify(fetch_blog(id))
+    except NotFoundError:
+        abort(404, description="Resource not found")
+    except NotAuthorizedError:
+        abort(403, description="Access denied")
+```
+
+## Using Context-Manager
+Other alternative is we can use context-manager.
+
+### repo / usecase level
+```py
+class SQLite():
+    def __init__(self, file='application.db'):
+        self.file=file
+    def __enter__(self):
+        self.conn = sqlite3.connect(self.file)
+        return self.conn.cursor()
+    def __exit__(self, type, value, traceback):
+        print("Closing the connection")
+        self.conn.close()
+
+class NotFoundError(Exception):
+    pass
+
+class NotAuthorizedError(Exception):
+    pass
+
+def fetch_blog(id: str):
+    try:
+        with SQLite('application.db') as cur:
+
+            # execute the query and fetch the data
+            cur.execute(f"SELECT * FROM blogs where id=?", [id])
+            result = cur.fetchone()
+
+            # return the result or raise an error
+            if result is None:
+                raise NotFoundError(f'Unable to find blog with id {id}.')
+        
+            data = blog_lst_to_json(result)
+            if not data['public']:
+                raise NotAuthorizedError(f'You are not allowed to access blog with id {id}.')
+            return data
+    except sqlite3.OperationalError:
+        raise NotFoundError(f'Unable to find blog with id {id}.')
+```
+
+### endpoint level
+in endpoint level same as above
 
 ---
 
